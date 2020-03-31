@@ -42,7 +42,7 @@ const updateOrder = (state, bookId, quantity) => {
 
     const book = books.find(({ id }) => id === bookId);
 
-    // fin item
+    // find item
     const itemIndex = cartItems.findIndex(({ id }) => id === bookId);
     const item = cartItems[itemIndex];
 
@@ -60,8 +60,8 @@ const updateShoppingCart = (state, action) => {
         return {
             cartItems: [],
             orderTotal: 0
-        }
-    }
+        };
+    };
 
     switch (action.type) {
         case 'BOOK_ADDED_TO_CART':

@@ -12,6 +12,8 @@
 }
 
 .shop-header .shopping-cart {
+  margin-top: 1rem;
+  margin-left: 1rem;
   align-self: center;
   font-size: 1.3rem;
   padding-right: 1rem;

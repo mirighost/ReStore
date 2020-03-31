@@ -17,17 +17,17 @@ const ShoppingCartTable = ({ items, total, onIncrease, onDecrease, onDelete }) =
                 <td>
                     <button
                         onClick={() => onDelete(id)}
-                        className="btn btn-outline-danger btn-sm float-right">
+                        className="btn btn-outline-danger btn-sm float-left">
                         <i className="fa fa-trash-o" />
                     </button>
                     <button
                         onClick={() => onIncrease(id)}
-                        className="btn btn-outline-success btn-sm float-right">
+                        className="btn btn-outline-success btn-sm float-left">
                         <i className="fa fa-plus-circle" />
                     </button>
                     <button
                         onClick={() => onDecrease(id)}
-                        className="btn btn-outline-warning btn-sm float-right">
+                        className="btn btn-outline-warning btn-sm float-left">
                         <i className="fa fa-minus-circle" />
                     </button>
                 </td>
