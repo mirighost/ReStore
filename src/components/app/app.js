@@ -19,9 +19,7 @@ const App = () => {
                     path="/cart"
                     component={CartPage} />
 
-                <Route render={() =>
-                    <ErrorPage />
-                } />
+                <Route render={() => <ErrorPage />} />
             </Switch>
         </main>
 
