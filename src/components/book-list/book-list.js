@@ -10,58 +10,59 @@ import { bindActionCreators } from 'redux';
 import './book-list.css';
 
 const BookList = ({ books, onAddedToCart }) => {
-	return (
-		<ul className="book-list">
-			{
-				books.map((book) => {
-					return (
-						<li key={book.id}>
-							<BookListItem
-								book={book}
-								onAddedToCart={() => onAddedToCart(book.id)}
-							/>
-						</li>
-					);
-				})
-			}
-		</ul>
-	);
+    return (
+        <ul className='book-list'>
+            {books.map((book) => {
+                return (
+                    <li key={book.id}>
+                        <BookListItem
+                            book={book}
+                            onAddedToCart={() => onAddedToCart(book.id)}
+                        />
+                    </li>
+                );
+            })}
+        </ul>
+    );
 };
 
 class BookListContainer extends Component {
-	componentDidMount() {
-		this.props.fetchBooks()
-	};
+    componentDidMount() {
+        this.props.fetchBooks();
+    }
 
-	render() {
-		const { books, loading, error, onAddedToCart } = this.props;
+    render() {
+        const { books, loading, error, onAddedToCart } = this.props;
 
-		// show loading message
-		if (loading) {
-			return <Spinner />
-		};
+        // show loading message
+        if (loading) {
+            return <Spinner />;
+        }
 
-		// show error message
-		if (error) {
-			return <ErrorIndicator />
-		};
+        // show error message
+        if (error) {
+            return <ErrorIndicator />;
+        }
 
-		return <BookList books={books} onAddedToCart={onAddedToCart} />
-	};
-};
+        return <BookList books={books} onAddedToCart={onAddedToCart} />;
+    }
+}
 
 const mapStateToProps = ({ bookList: { books, loading, error } }) => {
-	return { books, loading, error };
+    return { books, loading, error };
 };
 
 const mapDispatchToProps = (dispatch, { bookstoreService }) => {
-	return bindActionCreators({
-		fetchBooks: fetchBooks(bookstoreService),
-		onAddedToCart: bookAddedToCart
-	}, dispatch);
+    return bindActionCreators(
+        {
+            fetchBooks: fetchBooks(bookstoreService),
+            onAddedToCart: bookAddedToCart,
+        },
+        dispatch,
+    );
 };
 
 export default compose(
-	withBookstoreService(),
-	connect(mapStateToProps, mapDispatchToProps)
+    withBookstoreService(),
+    connect(mapStateToProps, mapDispatchToProps),
 )(BookListContainer);

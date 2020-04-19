@@ -1,10 +1,19 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { bookAddedToCart, bookRemovedFromCart, allBooksRemovedFromCart } from '../../actions';
+import {
+    bookAddedToCart,
+    bookRemovedFromCart,
+    allBooksRemovedFromCart,
+} from '../../actions';
 import './shopping-cart-table.css';
 
-const ShoppingCartTable = ({ items, total, onIncrease, onDecrease, onDelete }) => {
-
+const ShoppingCartTable = ({
+    items,
+    total,
+    onIncrease,
+    onDecrease,
+    onDelete,
+}) => {
     const renderRow = (item, idx) => {
         const { id, title, count, total } = item;
         const totalPrice = (Math.round(total * 100) / 100).toFixed(2);
@@ -18,18 +27,18 @@ const ShoppingCartTable = ({ items, total, onIncrease, onDecrease, onDelete }) =
                 <td>
                     <button
                         onClick={() => onDelete(id)}
-                        className="btn btn-outline-danger btn-sm float-left">
-                        <i className="fa fa-trash-o" />
+                        className='btn btn-outline-danger btn-sm float-left'>
+                        <i className='fa fa-trash-o' />
                     </button>
                     <button
                         onClick={() => onIncrease(id)}
-                        className="btn btn-outline-success btn-sm float-left">
-                        <i className="fa fa-plus-circle" />
+                        className='btn btn-outline-success btn-sm float-left'>
+                        <i className='fa fa-plus-circle' />
                     </button>
                     <button
                         onClick={() => onDecrease(id)}
-                        className="btn btn-outline-warning btn-sm float-left">
-                        <i className="fa fa-minus-circle" />
+                        className='btn btn-outline-warning btn-sm float-left'>
+                        <i className='fa fa-minus-circle' />
                     </button>
                 </td>
             </tr>
@@ -37,9 +46,9 @@ const ShoppingCartTable = ({ items, total, onIncrease, onDecrease, onDelete }) =
     };
 
     return (
-        <div className="shopping-cart-table">
+        <div className='shopping-cart-table'>
             <h2>Your Order</h2>
-            <table className="table">
+            <table className='table'>
                 <thead>
                     <tr>
                         <th>#</th>
@@ -50,14 +59,10 @@ const ShoppingCartTable = ({ items, total, onIncrease, onDecrease, onDelete }) =
                     </tr>
                 </thead>
 
-                <tbody>
-                    {items.map(renderRow)}
-                </tbody>
+                <tbody>{items.map(renderRow)}</tbody>
             </table>
 
-            <div className="total">
-                Total: ${total}
-            </div>
+            <div className='total'>Total: ${total}</div>
         </div>
     );
 };
@@ -65,14 +70,14 @@ const ShoppingCartTable = ({ items, total, onIncrease, onDecrease, onDelete }) =
 const mapStateToProps = ({ shoppingCart: { cartItems, orderTotal } }) => {
     return {
         items: cartItems,
-        total: orderTotal
+        total: orderTotal,
     };
 };
 
 const mapDispatchToProps = {
     onIncrease: bookAddedToCart,
     onDecrease: bookRemovedFromCart,
-    onDelete: allBooksRemovedFromCart
+    onDelete: allBooksRemovedFromCart,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(ShoppingCartTable);
